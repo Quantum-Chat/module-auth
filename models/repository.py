@@ -1,8 +1,12 @@
-from db import createEngine, CreateDBAndTables
+import sys
+
+sys.path.append("/home/Hirmaan/projects/module-auth/")
+
+from models.db import createEngine, CreateDBAndTables
 from sqlmodel import Session
 
 
-class repository:
+class Repository:
     """this is the repository desgin pattern"""
 
     def __init__(self) -> None:
@@ -17,8 +21,8 @@ class repository:
                 session.commit()
             print("insert successfull")
             return True
-        except:
-            print("insert has problem")
+        except Exception as e:
+            print(f"insert has error : {e}")
             return False
 
     def edit(self, row):

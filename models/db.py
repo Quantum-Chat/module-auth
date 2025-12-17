@@ -1,7 +1,11 @@
+import sys
+
+sys.path.append("/home/Hirmaan/projects/module-auth/")
+
 from sqlmodel import SQLModel, create_engine
 
 
-DB_NAME = "lcoaldb"
+DB_NAME = "authdb"
 DB_URL = "localhost:5432"
 
 
