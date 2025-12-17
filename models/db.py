@@ -6,14 +6,20 @@ DB_URL = "localhost:5432"
 
 
 def createEngine():
-    engine = create_engine(
-        DB_URL, echo=True
-    )  # what is the echo mode ? : to better understand whta happned in the background
-
-    return engine
+    try:
+        engine = create_engine(
+            DB_URL, echo=True
+        )  # what is the echo mode ? : to better understand whta happned in the background
+        print("engine created")
+        return engine
+    except Exception as e:
+        print(f"create engine error : {e}")
 
 
 def CreateDBAndTables(engine):
-    SQLModel.metadata.create_all(
-        engine
-    )  # when you use Table attrebiute in the table class you should to migrate metadata
+    try:
+        SQLModel.metadata.create_all(
+            engine
+        )  # when you use Table attrebiute in the table class you should to migrate metadata
+    except Exception as e:
+        print(f"CreateDBAndTables has error : {e}")
