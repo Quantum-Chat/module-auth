@@ -9,7 +9,7 @@ from models.models import Client
 
 def main():
     repo = Repository()
-    result = repo.selectAll(Client)
+    result = repo.selectWhere(Client, Client.id == 1)
 
     if not result:
         result = []

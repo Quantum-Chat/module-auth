@@ -28,6 +28,18 @@ class Repository:
         except Exception as e:
             logger.error("selectAll has error", e)
 
+    def selectWhere(self, table, condition):
+        try:
+            with Session(self.engine) as session:
+                statement = select(table).where(condition)
+                results = list(session.exec(statement))
+                session.expunge_all()
+
+            logger.success("selectAll successfully")
+            return results
+        except Exception as e:
+            logger.error("selectAll has error", e)
+
     def insert(self, row):
         try:
             with Session(self.engine) as session:
