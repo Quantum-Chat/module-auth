@@ -4,6 +4,9 @@ sys.path.append("/home/Hirmaan/projects/module-auth/")
 
 from models.db import createEngine, CreateDBAndTables
 from sqlmodel import Session
+from utils.loger import ConsoleLogger
+
+logger = ConsoleLogger()
 
 
 class Repository:
@@ -19,10 +22,10 @@ class Repository:
                 session.add(row)
 
                 session.commit()
-            print("insert successfull")
+            logger.success("insert successfully")
             return True
         except Exception as e:
-            print(f"insert has error : {e}")
+            logger.error("insert has error", e)
             return False
 
     def edit(self, row):

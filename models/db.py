@@ -3,10 +3,13 @@ import sys
 sys.path.append("/home/Hirmaan/projects/module-auth/")
 
 from sqlmodel import SQLModel, create_engine
+from utils.loger import ConsoleLogger
 
 
-DB_NAME = "authdb"
-DB_URL = "localhost:5432"
+DB_NAME = "clients"
+DB_URL = "postgresql://postgres:postgres@localhost:5432/clients"
+
+logger = ConsoleLogger()
 
 
 def createEngine():
@@ -14,10 +17,10 @@ def createEngine():
         engine = create_engine(
             DB_URL, echo=True
         )  # what is the echo mode ? : to better understand whta happned in the background
-        print("engine created")
+        logger.success("engine created successfully")
         return engine
     except Exception as e:
-        print(f"create engine error : {e}")
+        logger.error("create engine error", e)
 
 
 def CreateDBAndTables(engine):
@@ -25,5 +28,6 @@ def CreateDBAndTables(engine):
         SQLModel.metadata.create_all(
             engine
         )  # when you use Table attrebiute in the table class you should to migrate metadata
+        logger.success("config db successfully")
     except Exception as e:
-        print(f"CreateDBAndTables has error : {e}")
+        logger.error("config db has error", e)
