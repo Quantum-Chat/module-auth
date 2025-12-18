@@ -8,9 +8,14 @@ from models.models import Client
 
 
 def main():
-    row = Client(token="this a test for insert")
     repo = Repository()
-    repo.insert(row)
+    result = repo.selectAll(Client)
+
+    if not result:
+        result = []
+
+    for item in iter(result):
+        print(item)
 
 
 if __name__ == "__main__":
