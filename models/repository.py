@@ -1,7 +1,3 @@
-import sys
-
-sys.path.append("/home/Hirmaan/projects/module-auth/")
-
 from models.db import createEngine, CreateDBAndTables
 from sqlmodel import Session, select
 from utils.loger import ConsoleLogger

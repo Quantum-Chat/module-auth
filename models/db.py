@@ -1,13 +1,14 @@
 import sys
 
-sys.path.append("/home/Hirmaan/projects/module-auth/")
+# sys.path.append("F:/Projects/Quantum/back-end/Microservice/auth")
+# sys.path.append("/home/Hirmaan/projects/module-auth/") # for linux
 
 from sqlmodel import SQLModel, create_engine
 from utils.loger import ConsoleLogger
 
 
 DB_NAME = "clients"
-DB_URL = "postgresql://postgres:postgres@localhost:5432/clients"
+DB_URL = "postgresql://postgres:postgres@localhost:5433/clients" # port changed in docker
 
 logger = ConsoleLogger()
 

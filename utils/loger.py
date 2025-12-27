@@ -1,6 +1,7 @@
 import sys
 
-sys.path.append("/home/Hirmaan/projects/module-auth/")
+# sys.path.append("f:/projects/quantum/back-end/microservice/auth")
+# sys.path.append("/home/hirmaan/projects/module-auth/") # for linux
 
 
 import sys

@@ -1,8 +1,3 @@
-import sys
-
-sys.path.append("/home/Hirmaan/projects/module-auth/")
-
-
 from models.repository import Repository
 from models.models import Client
 
