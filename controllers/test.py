@@ -4,13 +4,10 @@ from models.models import Client
 
 def main():
     repo = Repository()
-    result = repo.selectWhere(Client, Client.id == 1)
+    newRow = Client(id=1,token="updated")
+    result = repo.update(Client,1,newRow)
 
-    if not result:
-        result = []
-
-    for item in iter(result):
-        print(item)
+    print(result)
 
 
 if __name__ == "__main__":

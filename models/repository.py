@@ -1,4 +1,5 @@
 from models.db import createEngine, CreateDBAndTables
+from models.models import Client
 from sqlmodel import Session, select
 from utils.loger import ConsoleLogger
 
@@ -48,11 +49,39 @@ class Repository:
             logger.error("insert has error", e)
             return False
 
-    def edit(self, row):
-        pass
+    def update(self, table, rowId, newRow):
+        try:
+            with Session(self.engine) as session:
+                statement = select(table).where(table.id == rowId)
+                results = session.exec(statement)
+                item = results.one()
 
-    def update(self, row):
-        pass
+                for field, value in newRow.__dict__.items():
+                    if not field.startswith('_') and hasattr(item, field):
+                        setattr(item, field, value)
 
-    def delete(self, row):
-        pass
+                session.add(item)
+                session.commit()
+                session.refresh(item)
+
+            logger.success("update successfully")
+            return item
+        except Exception as e:
+            logger.error("update has error", e)
+            return None
+
+    def delete(self, table, rowId):
+        try:
+            with Session(self.engine) as session:
+                statement = select(table).where(table.id == rowId)
+                results = session.exec(statement)
+                item = results.one()
+
+                session.delete(item)
+                session.commit()
+
+            logger.success("delete successfully")
+            return True
+        except Exception as e:
+            logger.error("delete has error", e)
+            return False
